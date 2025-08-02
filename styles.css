@@ -1,0 +1,232 @@
+/* styles/global.css */
+:root {
+    /* Variáveis CSS consolidadas do index.html */
+    --primary: #ff000073;
+    --primary-dark: #000000;
+    --secondary: #c00020de;
+    --dark: #131313;
+    --light: #f8fafc;
+    --gray: #94a3b8;
+}
+
+/* Reset e estilos base */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark);
+    color: var(--light);
+    overflow-x: hidden;
+}
+
+.code-font {
+    font-family: 'Fira Code', monospace;
+}
+
+/* Animações */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--primary); }
+}
+
+.typing-animation {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: .15em solid var(--primary);
+    animation: 
+        typing 3.5s steps(30, end),
+        blink-caret .75s step-end infinite;
+}
+
+.float-animation {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+/* Gradient text */
+.gradient-text {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Card hover effect */
+.project-card {
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px -5px rgba(0, 0, 0, 0.836);
+}
+
+/* Tech stack badges */
+.tech-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+/* Terminal styling */
+.terminal {
+    background-color: rgba(14, 14, 14, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.082);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.terminal-header {
+    background-color: rgba(48, 48, 48, 0.247);
+    padding: 0.5rem 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 9999px;
+}
+
+.terminal-dot.red {
+    background-color: #f43f5e;
+}
+
+.terminal-dot.yellow {
+    background-color: #eab308;
+}
+
+.terminal-dot.green {
+    background-color: #10b981;
+}
+
+.terminal-content {
+    padding: 1rem;
+    font-family: 'Fira Code', monospace;
+}
+
+.terminal-line {
+    margin-bottom: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.terminal-prompt {
+    color: var(--secondary);
+}
+
+.typed-cursor {
+    opacity: 1;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Section divider */
+.section-divider {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0), var(--primary), rgba(0, 0, 0, 0));
+    margin: 4rem 0;
+}
+
+
+
+
+
+/* ... (código posterior) ... */
+
+
+/* Ajustes de responsividade */
+/* Centraliza o conteúdo da Hero Section em telas menores */
+@media (max-width: 767px) { /* md breakpoint */
+    #home .md\:w-1\/2 {
+        text-align: center;
+    }
+    #home .typing-animation {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #home .flex.gap-4 {
+        justify-content: center;
+    }
+}
+
+/* Ajustes para a seção About Me */
+@media (max-width: 1023px) { /* lg breakpoint */
+    #about .lg\:w-1\/2 {
+        text-align: center; /* Centraliza a imagem e texto em telas menores que lg */
+    }
+    #about img {
+        max-width: 300px; /* Limita o tamanho da imagem em telas menores */
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Ajustes para a seção Skills (grid) */
+@media (max-width: 767px) { /* md breakpoint */
+    #skills .grid-cols-2.md\:grid-cols-4 {
+        grid-template-columns: repeat(1, minmax(0, 1fr)); /* 1 coluna em mobile */
+    }
+}
+@media (min-width: 768px) and (max-width: 1023px) { /* md breakpoint */
+    #skills .grid-cols-2.md\:grid-cols-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 colunas em tablets */
+    }
+}
+
+/* Ajustes para a seção Projects (grid) */
+@media (max-width: 767px) { /* md breakpoint */
+    #projects .grid.md\:grid-cols-2 {
+        grid-template-columns: repeat(1, minmax(0, 1fr)); /* 1 coluna em mobile */
+    }
+}
+@media (min-width: 768px) and (max-width: 1279px) { /* md to xl breakpoint */
+    #projects .grid.md\:grid-cols-2.xl\:grid-cols-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 colunas em tablets */
+    }
+}
+
+/* Ajustes para a seção Contact */
+@media (max-width: 1023px) { /* lg breakpoint */
+    #contact .lg\:w-1\/2 {
+        text-align: center; /* Centraliza o texto de contato em telas menores */
+    }
+    #contact .space-y-4 > div {
+        justify-content: center; /* Centraliza os ícones de contato */
+    }
+    #contact .mt-8.flex.gap-4 {
+        justify-content: center; /* Centraliza os links sociais no contato */
+    }
+}
